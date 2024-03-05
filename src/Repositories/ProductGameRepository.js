@@ -18,6 +18,19 @@ export default class ProductGameRepository {
         
     }
 
+    async getproductbyname(name){
+        try {
+        const fingByname = await Jogo.findAll({ where: { nome_do_jogo: name } });
+        return fingByname;
+          } catch (error) {
+            console.error('Erro ao encontrar jogo:', error);
+            throw error;
+          }
+        
+    }
+
+
+
     async CreateGame(nome, descricao_jogo, CaminhoImg, Price){
        try{
         const CreateJogo = Jogo.create({

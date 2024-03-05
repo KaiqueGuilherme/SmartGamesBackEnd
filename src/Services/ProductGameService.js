@@ -68,11 +68,21 @@ export default class ServiceProductGame {
 
     async OneProduct(id){
         const Product = await this.repositoryProductGame.FindOneGame(id);
-
-        if(Product >= null){
+        if(Product === null){
             return {message: "Nenhum resultado Encontrado"}
         }
         return Product;
     }
 
+    async OneProductbyName(name){
+        const Product = await this.repositoryProductGame.getproductbyname(name);
+        if(Product === null){
+            return {message: "Nenhum resultado Encontrado"}
+        }
+        return Product;
+    }
+
+
+
+    
 }

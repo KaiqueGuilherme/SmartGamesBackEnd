@@ -37,7 +37,7 @@ export default class ControllerGames{
 
         try{
         const ProductOne = await this.serviceGame.OneProduct(id);
-        res.status(200).json({message: "Produto Selecionado:", ProductOne});
+        res.status(200).json({message: "Buscando Produto:", ProductOne});
         }catch(error){
             console.error('Erro ao obter dados:', error);
             
@@ -45,6 +45,18 @@ export default class ControllerGames{
         }
     }    
 
+    this.getProductOneName = async (req, res, next) => {
+        const name = req.params.name;
+
+        try{
+        const ProductName = await this.serviceGame.OneProductbyName(name);
+        res.status(200).json({message: "Buscando Produto:", ProductName});
+        }catch(error){
+            console.error('Erro ao obter dados:', error);
+            
+            res.status(500).json({ error: 'erro ao obter' });
+        }
+    }
 
 }
     
