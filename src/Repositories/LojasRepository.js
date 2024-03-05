@@ -1,7 +1,7 @@
-import Loja from "../Models/ModelLojas";
+import Loja from "../Models/ModelLojas.js";
 
 
-export default class ProductGameRepository {
+export default class ShopRepository {
 
     async FindOneShop(id){
         try {
