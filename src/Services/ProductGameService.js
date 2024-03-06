@@ -66,13 +66,43 @@ export default class ServiceProductGame {
           }
     }
 
-    async OneProduct(id){
+    async OneProduct(id) {
         const Product = await this.repositoryProductGame.FindOneGame(id);
-        if(Product === null){
-            return {message: "Nenhum resultado Encontrado"}
+        
+        if (Product === null) {
+            return { message: "Nenhum resultado Encontrado" };
         }
-        return Product;
+        
+        const gameShops = await this.repositoryGameofShop.FindOneGame(id);
+        const GameForPlataform = await this.repositoryJogosPlataformas.findAllByGameId(id);
+        
+        const shops = [];
+        const Plataforms = [];
+        const productsWithShops = [];
+    
+        for (const gameShop of gameShops) {
+            const shopId = gameShop.loja_id;
+            const shop = await this.repositoryshop.FindOneShop(shopId);
+            
+            if (shop !== null) {
+                shops.push(shop.nome);
+            }
+        }
+    
+        for (const GameForPlataforms of GameForPlataform) {
+            const Gameid = GameForPlataforms.plataforma_id;
+            const game = await this.repositoryPlataformas.findById(Gameid);
+            
+            if (game !== null) {
+                Plataforms.push(game.nome);
+            }
+        }
+    
+        productsWithShops.push({ game: Product, shops, Plataforms });
+    
+        return productsWithShops;
     }
+    
 
     async OneProductbyName(name){
         const Product = await this.repositoryProductGame.getproductbyname(name);
