@@ -22,6 +22,15 @@ class CupomRepository {
     }
   }
 
+  async FindByID(id) {
+    try {
+        const FindCupom = await Cupom.findByPk(id);
+        return FindCupom;
+    } catch (error) {
+        console.error('Erro ao encontrar o cupon:', error);
+        throw error;
+    }
+}
 }
 
 export default CupomRepository;

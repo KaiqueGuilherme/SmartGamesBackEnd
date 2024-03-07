@@ -1,13 +1,15 @@
 import express from 'express';
-import ServiceCompras from '../Services/BuygameService.js';
-
-const BuyRouter = express.Router();
-
-const controllerCompras = new ServiceCompras();
+import ComprasController from '../Controllers/ByGameController.js';
 
 
-BuyRouter.post('/criarCompra', controllerCompras.createOrders);
+const CupomRouter = express.Router();
+
+const controllerFinance = new ComprasController();
+
+
+CupomRouter.post('/criarCompra', controllerFinance.createOrder);
 
 
 
-export default BuyRouter;
+
+export default CupomRouter;
