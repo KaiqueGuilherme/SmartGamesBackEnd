@@ -1,7 +1,7 @@
 import conn from "./Data/db.js";
 import { Sequelize } from "sequelize";
 
-const CompradorJogo = conn.define('compradores_jogos', {
+const PlayerPurchase  = conn.define('compradores_jogos', {
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -35,4 +35,4 @@ const CompradorJogo = conn.define('compradores_jogos', {
     timestamps: true,
 });
 
-export default CompradorJogo;
+export default PlayerPurchase;
